@@ -162,7 +162,7 @@ public class AdjacencyList
             outString += adjacentData[ index ].getWeight();
             outString += RIGHT_PAREN;
             outString += COMMA;
-            outString ++ SPACE;
+            outString += SPACE;
         }
 
         return outString;
