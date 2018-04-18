@@ -134,9 +134,16 @@ public class GraphClass
      */
     public int vertexInList( char testVertex )
     {
-        // TODO implement this method
+        int index;
+        for( index = 0; index < vertexListSize; index++ )
+        {
+            if( vertexList[ index ].getVertex() == testVertex )
+            {
+                return index;
+            }
+        }
 
-        return 0; // temporary stub return
+        return NOT_IN_LIST; // temporary stub return
     }
 
     /**
