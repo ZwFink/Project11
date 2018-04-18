@@ -107,14 +107,15 @@ public class GraphClass
         }
         else
         {
-            while (vertexList[ searchIndex ].getVertex() < vertex)
+            while ( vertexList[ searchIndex ] != null &&
+                    vertexList[ searchIndex ].getVertex() < vertex )
             {
                 searchIndex++;
             }
 
-            for (foundIndex = searchIndex; foundIndex < vertexListSize; foundIndex++)
+            for (foundIndex = vertexListSize - 1; foundIndex >= searchIndex; foundIndex--)
             {
-                vertexList[foundIndex] = vertexList[foundIndex + 1];
+                vertexList[ foundIndex + 1 ] = vertexList[ foundIndex ];
             }
         }
 
