@@ -61,6 +61,15 @@ public class VertexNode
     }
 
     /**
+     * gets the vertex letter
+     * @return the character letter
+     */
+    public char getVertex()
+    {
+       return vertexLetter;
+    }
+
+    /**
      * checks for vertex has been visited in BFS, DFS
      * @return boolean state of visited flag
      */
