@@ -70,9 +70,15 @@ public class GraphClass
      */
     public boolean setVertex( char vertex, char adjVertex, int weight )
     {
-       // TODO: implement this method
+        int vertexIndex = vertexInList( vertex );
 
-       return false; // temporary stub return
+        if( vertexIndex != NOT_IN_LIST )
+        {
+           vertexList[ vertexIndex ].addAdjacentVertex( adjVertex, weight );
+           return true;
+        }
+
+        return insertVertex( vertex, adjVertex, weight );
     }
 
 
