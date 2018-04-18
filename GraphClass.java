@@ -93,8 +93,27 @@ public class GraphClass
      */
     public boolean insertVertex( char vertex, char adjVertex, int weight )
     {
-       // TODO: implement this method
-        return false; // temporary stub return
+        int searchIndex = 0;
+        int foundIndex;
+
+        if( vertexListSize < VERTEX_CAPACITY )
+        {
+            while( vertexList[ searchIndex ].getVertex() < vertex )
+            {
+               searchIndex++;
+            }
+
+            for( foundIndex = searchIndex; foundIndex < vertexListSize; foundIndex++ )
+            {
+               vertexList[ foundIndex ] = vertexList[ foundIndex + 1 ];
+            }
+
+            vertexListSize++;
+            vertexList[ searchIndex ] = new VertexNode( vertex, adjVertex, weight );
+
+        }
+
+        return false;
     }
 
     /**
