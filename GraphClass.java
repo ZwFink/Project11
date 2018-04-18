@@ -96,24 +96,34 @@ public class GraphClass
         int searchIndex = 0;
         int foundIndex;
 
-        if( vertexListSize < VERTEX_CAPACITY )
+        if( vertexListSize == VERTEX_CAPACITY )
         {
-            while( vertexList[ searchIndex ].getVertex() < vertex )
-            {
-               searchIndex++;
-            }
-
-            for( foundIndex = searchIndex; foundIndex < vertexListSize; foundIndex++ )
-            {
-               vertexList[ foundIndex ] = vertexList[ foundIndex + 1 ];
-            }
-
-            vertexListSize++;
-            vertexList[ searchIndex ] = new VertexNode( vertex, adjVertex, weight );
-
+            return false;
         }
 
-        return false;
+        if( vertexListSize == 0 )
+        {
+            searchIndex = 0;
+        }
+        else
+        {
+            while (vertexList[ searchIndex ].getVertex() < vertex)
+            {
+                searchIndex++;
+            }
+
+            for (foundIndex = searchIndex; foundIndex < vertexListSize; foundIndex++)
+            {
+                vertexList[foundIndex] = vertexList[foundIndex + 1];
+            }
+        }
+
+        vertexListSize++;
+        vertexList[ searchIndex ] = new VertexNode( vertex, adjVertex, weight );
+
+        vertexList[ searchIndex ].addAdjacentVertex( adjVertex, weight );
+
+        return true;
     }
 
     /**
@@ -178,5 +188,15 @@ public class GraphClass
 
             printChars( numChars - 1, outChar );
         }
+    }
+
+    public String toString()
+    {
+        String returnString = "";
+        for( int index = 0; index < vertexListSize; index++ )
+        {
+           returnString += vertexList[ index ].getVertex() + " ";
+        }
+        return  returnString;
     }
 }
