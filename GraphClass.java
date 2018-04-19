@@ -72,8 +72,8 @@ public class GraphClass
     {
         int vertexIndex = vertexInList( vertex );
 
-        boolean firstAdded = false;
-        boolean secondAdded = false;
+        boolean firstAdded;
+        boolean secondAdded;
 
         if( vertexIndex != NOT_IN_LIST )
         {
@@ -85,7 +85,7 @@ public class GraphClass
             firstAdded = insertVertex(vertex, adjVertex, weight);
         }
 
-        // add the adjacent vertex weith adjacency of vertex
+        // add the adjacent vertex with adjacency of vertex
         vertexIndex = vertexInList( adjVertex );
         if( vertexIndex != NOT_IN_LIST )
         {
