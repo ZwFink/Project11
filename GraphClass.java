@@ -184,29 +184,42 @@ public class GraphClass
      * Depth-First Search (DFS)
      * is actually a treversal
      * @param startVertex character vertex to start with
-     * @param showQueue boolean flag to control display of stack during operations
+     * @param showStack boolean flag to control display of stack during operations
      * @return String result of traversal process
      * showing each visited vertex in the order it was visited
      */
-    public String DFS( char startVertex, boolean showQueue )
+    public String DFS( char startVertex, boolean showStack )
     {
         int startingIndex = vertexInList( startVertex );
         String dfsString = "";
+        String resultString = "Depth-First Result: ";
 
         VertexStack depthStack = new VertexStack();
 
         VertexNode currentVertex;
         AdjacentNode nextAdjacent;
+        VertexNode currentAdj;
 
         boolean adjacencyNotFound;
 
+        if( showStack )
+        {
+            System.out.println( "Depth First Traversal: ");
+        }
 
         if( startingIndex != NOT_IN_LIST )
         {
             currentVertex = vertexList[ startingIndex ];
             currentVertex.setVisited();
 
+            dfsString += currentVertex.getVertex();
+            dfsString += SPACE;
+
             depthStack.push( currentVertex );
+            if( showStack )
+            {
+                System.out.println( depthStack.toString() );
+            }
 
             while( !depthStack.isEmpty() )
             {
@@ -216,13 +229,23 @@ public class GraphClass
 
                 while( nextAdjacent != null && adjacencyNotFound )
                 {
-                    currentVertex = adjToVertex( nextAdjacent );
+                    currentAdj = adjToVertex( nextAdjacent );
 
-                    if( !currentVertex.hasBeenVisited() )
+                    if( !currentAdj.hasBeenVisited() )
                     {
-                        currentVertex.setVisited();
-                        depthStack.push( currentVertex );
+                        currentAdj.setVisited();
+                        depthStack.push( currentAdj );
                         adjacencyNotFound = false;
+
+                        if( showStack )
+                        {
+                            System.out.println( depthStack.toString() );
+                        }
+
+                        dfsString += currentAdj.getVertex();
+                        dfsString += SPACE;
+
+
                     }
 
                     nextAdjacent = currentVertex.getNextAdjacency();
@@ -230,6 +253,11 @@ public class GraphClass
                 if( adjacencyNotFound )
                 {
                     depthStack.pop();
+
+                    if( showStack )
+                    {
+                        System.out.println( depthStack );
+                    }
                 }
             }
 
@@ -239,7 +267,7 @@ public class GraphClass
             }
         }
 
-        return dfsString;
+        return resultString + dfsString;
     }
 
     /**
