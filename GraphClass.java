@@ -78,9 +78,19 @@ public class GraphClass
            return true;
         }
 
+        // add the adjacent vertex weith adjacency of vertex
+        vertexIndex = vertexInList( adjVertex );
+        if( vertexIndex != NOT_IN_LIST )
+        {
+            vertexList[ vertexIndex ].addAdjacentVertex( vertex, weight );
+        }
+        else
+        {
+            insertVertex( adjVertex, vertex, weight );
+        }
+
         return insertVertex( vertex, adjVertex, weight );
     }
-
 
     /**
      * Inserts vertex, adjacent vertex, and weight
@@ -144,7 +154,7 @@ public class GraphClass
             }
         }
 
-        return NOT_IN_LIST; // temporary stub return
+        return NOT_IN_LIST;
     }
 
     /**
@@ -174,7 +184,6 @@ public class GraphClass
      */
     public String DFS( char startVertex, boolean showQueue )
     {
-       // TODO: Implement this method
 
        return ""; // temporary stub return
     }
@@ -185,7 +194,42 @@ public class GraphClass
      */
     public void generateAdjacencyMatrix()
     {
-       // TODO: Implement this method
+        int index = 0;
+        AdjacentNode currentAdjacency;
+
+        System.out.print( SPACE );
+        System.out.print( SPACE );
+
+        for( index = 0; index < vertexListSize; index++ )
+        {
+            System.out.print( vertexList[ index ].getVertex() );
+            System.out.print( SPACE );
+        }
+
+        System.out.println();
+
+        for( index = 0; index < vertexListSize; index++ )
+        {
+            System.out.print( vertexList[ index ].getVertex() );
+            System.out.print( SPACE );
+
+
+            currentAdjacency = vertexList[ index ].getFirstAdjacency();
+
+            for( index = 0; index < vertexListSize; index++ )
+            {
+                if( currentAdjacency != null &&
+                    currentAdjacency.getVertex() == vertexList[ index].getVertex() )
+                {
+                   System.out.print( currentAdjacency.getWeight() );
+                }
+                else
+                {
+                    System.out.print( DASH );
+                }
+                System.out.print( SPACE );
+            }
+       }
     }
 
     private void printChars( int numChars, char outChar )
