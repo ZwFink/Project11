@@ -241,6 +241,11 @@ public class GraphClass
        }
     }
 
+    /**
+     * Recursive method that prints a number of specified characters
+     * @param numChars Integer number of characters to print
+     * @param outChar character value to print
+     */
     private void printChars( int numChars, char outChar )
     {
         if( numChars > 0 )
