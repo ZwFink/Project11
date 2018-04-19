@@ -197,10 +197,10 @@ public class GraphClass
 
         VertexNode currentVertex;
         AdjacentNode nextAdjacent;
-        VertexNode topOfStack;
-        VertexNode currentAdjacent;
 
-        boolean adjacencyNotFound = true;
+        boolean adjacencyNotFound;
+
+
         if( startingIndex != NOT_IN_LIST )
         {
             currentVertex = vertexList[ startingIndex ];
@@ -210,12 +210,32 @@ public class GraphClass
 
             while( !depthStack.isEmpty() )
             {
+                adjacencyNotFound = true;
                 currentVertex = depthStack.peekTop();
                 nextAdjacent = currentVertex.getFirstAdjacency();
 
                 while( nextAdjacent != null && adjacencyNotFound )
                 {
+                    currentVertex = adjToVertex( nextAdjacent );
+
+                    if( !currentVertex.hasBeenVisited() )
+                    {
+                        currentVertex.setVisited();
+                        depthStack.push( currentVertex );
+                        adjacencyNotFound = false;
+                    }
+
+                    nextAdjacent = currentVertex.getNextAdjacency();
                 }
+                if( adjacencyNotFound )
+                {
+                    depthStack.pop();
+                }
+            }
+
+            for( startingIndex = 0; startingIndex < vertexListSize; startingIndex++ )
+            {
+                vertexList[ startingIndex ].unSetVisited();
             }
         }
 
@@ -296,7 +316,7 @@ public class GraphClass
      */
     public VertexNode adjToVertex( AdjacentNode adjNode )
     {
-       int vertexIndex = adjNode.getVertex();
+       int vertexIndex = vertexInList( adjNode.getVertex() );
        return vertexList[ vertexIndex ];
     }
 
