@@ -72,10 +72,17 @@ public class GraphClass
     {
         int vertexIndex = vertexInList( vertex );
 
+        boolean firstAdded = false;
+        boolean secondAdded = false;
+
         if( vertexIndex != NOT_IN_LIST )
         {
            vertexList[ vertexIndex ].addAdjacentVertex( adjVertex, weight );
-           return true;
+           firstAdded = true;
+        }
+        else
+        {
+            firstAdded = insertVertex(vertex, adjVertex, weight);
         }
 
         // add the adjacent vertex weith adjacency of vertex
@@ -83,13 +90,14 @@ public class GraphClass
         if( vertexIndex != NOT_IN_LIST )
         {
             vertexList[ vertexIndex ].addAdjacentVertex( vertex, weight );
+            secondAdded = true;
         }
         else
         {
-            insertVertex( adjVertex, vertex, weight );
+            secondAdded = insertVertex( adjVertex, vertex, weight );
         }
 
-        return insertVertex( vertex, adjVertex, weight );
+        return firstAdded && secondAdded;
     }
 
     /**
@@ -131,8 +139,6 @@ public class GraphClass
 
         vertexListSize++;
         vertexList[ searchIndex ] = new VertexNode( vertex, adjVertex, weight );
-
-        vertexList[ searchIndex ].addAdjacentVertex( adjVertex, weight );
 
         return true;
     }
@@ -194,7 +200,8 @@ public class GraphClass
      */
     public void generateAdjacencyMatrix()
     {
-        int index = 0;
+        int index;
+        int innerIndex;
         AdjacentNode currentAdjacency;
 
         System.out.print( SPACE );
@@ -216,12 +223,13 @@ public class GraphClass
 
             currentAdjacency = vertexList[ index ].getFirstAdjacency();
 
-            for( index = 0; index < vertexListSize; index++ )
+            for( innerIndex = 0; innerIndex < vertexListSize; innerIndex++ )
             {
                 if( currentAdjacency != null &&
-                    currentAdjacency.getVertex() == vertexList[ index].getVertex() )
+                    currentAdjacency.getVertex() == vertexList[ innerIndex ].getVertex() )
                 {
                    System.out.print( currentAdjacency.getWeight() );
+                   currentAdjacency = vertexList[ index ].getNextAdjacency();
                 }
                 else
                 {
@@ -229,6 +237,7 @@ public class GraphClass
                 }
                 System.out.print( SPACE );
             }
+            System.out.println();
        }
     }
 
