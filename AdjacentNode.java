@@ -1,8 +1,8 @@
+
 package p11_Package;
 
 public class AdjacentNode
 {
-
     /**
      * character vertex letter
      */
@@ -14,29 +14,34 @@ public class AdjacentNode
     private int vertexWeight;
 
     /**
-     * Initialization constructor
+     * initialization constructor
+     *
      * @param vertex character vertex letter
+     *
      * @param weight integer vertex weight
      */
     public AdjacentNode( char vertex, int weight )
     {
         vertexLetter = vertex;
+
         vertexWeight = weight;
     }
 
     /**
-     * Copy constructor
+     * copy constructor
+     *
      * @param copied AdjacentNode item to be copied
      */
     public AdjacentNode( AdjacentNode copied )
     {
-        vertexWeight = copied.vertexWeight;
+        vertexLetter = copied.vertexLetter;
 
         vertexWeight = copied.vertexWeight;
     }
 
     /**
-     * Gets vertex letter
+     * gets vertex letter
+     *
      * @return character vertex letter
      */
     public char getVertex()
@@ -45,11 +50,13 @@ public class AdjacentNode
     }
 
     /**
-     * Gets vertex weight
+     * gets vertex weight
+     *
      * @return integer vertex weight
      */
     public int getWeight()
     {
-       return vertexWeight;
+        return vertexWeight;
     }
+
 }
