@@ -190,8 +190,36 @@ public class GraphClass
      */
     public String DFS( char startVertex, boolean showQueue )
     {
+        int startingIndex = vertexInList( startVertex );
+        String dfsString = "";
 
-       return ""; // temporary stub return
+        VertexStack depthStack = new VertexStack();
+
+        VertexNode currentVertex;
+        AdjacentNode nextAdjacent;
+        VertexNode topOfStack;
+
+        boolean adjacencyNotFound = true;
+        if( startingIndex != NOT_IN_LIST )
+        {
+            currentVertex = vertexList[ startingIndex ];
+            currentVertex.setVisited();
+
+            depthStack.push( currentVertex );
+
+            while( !depthStack.isEmpty() )
+            {
+                currentVertex = depthStack.peekTop();
+                nextAdjacent = currentVertex.getFirstAdjacency();
+
+                while( nextAdjacent != null && adjacencyNotFound )
+                {
+                        
+                }
+            }
+        }
+
+        return dfsString;
     }
 
     /**
