@@ -207,6 +207,7 @@ public class GraphClass
         System.out.print( SPACE );
         System.out.print( SPACE );
 
+        // print out the top row of all the vertices
         for( index = 0; index < vertexListSize; index++ )
         {
             System.out.print( vertexList[ index ].getVertex() );
@@ -219,7 +220,6 @@ public class GraphClass
         {
             System.out.print( vertexList[ index ].getVertex() );
             System.out.print( SPACE );
-
 
             currentAdjacency = vertexList[ index ].getFirstAdjacency();
 
