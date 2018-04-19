@@ -198,6 +198,7 @@ public class GraphClass
         VertexNode currentVertex;
         AdjacentNode nextAdjacent;
         VertexNode topOfStack;
+        VertexNode currentAdjacent;
 
         boolean adjacencyNotFound = true;
         if( startingIndex != NOT_IN_LIST )
@@ -214,7 +215,6 @@ public class GraphClass
 
                 while( nextAdjacent != null && adjacencyNotFound )
                 {
-                        
                 }
             }
         }
@@ -282,6 +282,22 @@ public class GraphClass
 
             printChars( numChars - 1, outChar );
         }
+    }
+
+    /**
+     * gets complete vertex node and data
+     * using the adjactent node data
+     *
+     * <p> Note: Cleans up access to this data in the BFS and
+     * DFS methods
+     *
+     * @param adjNode AdjacentNode data provided
+     * @return vertexNode data found in array
+     */
+    public VertexNode adjToVertex( AdjacentNode adjNode )
+    {
+       int vertexIndex = adjNode.getVertex();
+       return vertexList[ vertexIndex ];
     }
 
     public String toString()
