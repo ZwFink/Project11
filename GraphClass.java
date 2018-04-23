@@ -232,6 +232,7 @@ public class GraphClass
                  }
                  nextAdjacency = currentVertex.getNextAdjacency();
               }
+              currentVertex = bfsQueue.peekFront();
            }
 
 
