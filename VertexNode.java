@@ -1,20 +1,23 @@
+
 package p11_Package;
 
 /**
- * Simple vertex class that holds a vertex, its adjacent vertices,
+ * Simple vertex class that holds
+ * a vertex, its adjacent vertices,
  * and the weight between them
  *
  * @author MichaelL
+ *
  */
 public class VertexNode
 {
     /**
-     * Vertex calue
+     * Vertex value
      */
     private char vertexLetter;
 
     /**
-     * visited flag for use with BFS, DFS
+     * visited flag for use with DFS, BFS
      */
     private boolean visited;
 
@@ -24,15 +27,20 @@ public class VertexNode
     private AdjacencyList adjacencyList;
 
     /**
-     * vertix initialization constructor,
+     * vertex initialization constructor,
      * adds vertex with first adjacent vertex data
+     *
      * @param vertex character vertex letter
+     *
      * @param adjVertex character adjacent vertex letter
+     *
      * @param adjWeight integer weight between the vertices
      */
     public VertexNode( char vertex, char adjVertex, int adjWeight )
     {
         vertexLetter = vertex;
+
+        visited = false;
 
         adjacencyList = new AdjacencyList();
 
@@ -40,19 +48,26 @@ public class VertexNode
     }
 
     /**
-     * Copy constructor
+     * copy constructor
+     *
      * @param copied VertexNode object to be copied
      */
     public VertexNode( VertexNode copied )
     {
-       vertexLetter = copied.vertexLetter;
-       visited = copied.visited;
-       adjacencyList = new AdjacencyList( copied.adjacencyList );
+        vertexLetter = copied.vertexLetter;
+
+        visited = copied.visited;
+
+        adjacencyList = new AdjacencyList( copied.adjacencyList );
     }
 
     /**
-     * adds subsequent adjacent data to VertexNode adjacency list
-     * @param adjVertex character vertex to be added to vertex list
+     * adds subsequent adjacent data to VertexNode
+     * adjacency list
+     *
+     * @param adjVertex character vertex to be added
+     * to vertex list
+     *
      * @param adjWeight integer weight value to be added
      */
     public void addAdjacentVertex( char adjVertex, int adjWeight )
@@ -61,16 +76,9 @@ public class VertexNode
     }
 
     /**
-     * gets the vertex letter
-     * @return the character letter
-     */
-    public char getVertex()
-    {
-       return vertexLetter;
-    }
-
-    /**
-     * checks for vertex has been visited in BFS, DFS
+     * checks for vertex has been visited
+     * in BFS, DFS
+     *
      * @return boolean state of visited flag
      */
     public boolean hasBeenVisited()
@@ -79,7 +87,8 @@ public class VertexNode
     }
 
     /**
-     * sets the visited flag
+     * sets visited flag
+     *
      */
     public void setVisited()
     {
@@ -87,7 +96,7 @@ public class VertexNode
     }
 
     /**
-     * unsets the visited flag
+     * unsets visited flag
      */
     public void unSetVisited()
     {
@@ -95,7 +104,19 @@ public class VertexNode
     }
 
     /**
-     * gets the first adjacent vertex data in the list if avaliable
+     * gets the vertex letter
+     *
+     * @return the character letter
+     */
+    public char getVertex()
+    {
+        return vertexLetter;
+    }
+
+    /**
+     * gets the first adjacent vertex data in the list
+     * if available
+     *
      * @return AdjacentNode data
      */
     public AdjacentNode getFirstAdjacency()
@@ -104,7 +125,9 @@ public class VertexNode
     }
 
     /**
-     * gets any of the remaiing adjacent vertex data if available
+     * gets any of the remaining adjacent vertex data
+     * if available
+     *
      * @return AdjacentNode data
      */
     public AdjacentNode getNextAdjacency()
