@@ -1,5 +1,6 @@
 package p11_Package;
 
+
 /**
  * Simple class for managing vertices and edges
  * in a graph
@@ -174,10 +175,74 @@ public class GraphClass
      */
     public String BFS( char startVertex, boolean showQueue )
     {
+        int startingIndex = vertexInList( startVertex );
 
-        // TODO: Implement this method
+        String headerString = "Breadth-First Traversal";
+        String resultString = "Breadth-First Result: ";
+        String visitedString = "";
 
-        return ""; // temporary stub return
+        VertexNode currentVertex;
+        VertexNode currentAdj;
+        AdjacentNode nextAdjacency;
+
+
+        VertexQueue bfsQueue = new VertexQueue();
+
+        if( startingIndex != NOT_IN_LIST )
+        {
+           currentVertex = vertexList[ startingIndex ];
+
+           currentVertex.setVisited();
+           bfsQueue.enqueue( currentVertex );
+
+           visitedString += currentVertex.getVertex();
+           visitedString += SPACE;
+
+           if( showQueue )
+           {
+               System.out.println( bfsQueue.toString() );
+           }
+
+           while( !bfsQueue.isEmpty() )
+           {
+              bfsQueue.dequeue();
+              nextAdjacency = currentVertex.getFirstAdjacency();
+
+              if( showQueue )
+              {
+                 System.out.println( bfsQueue.toString() );
+              }
+
+              while( nextAdjacency != null )
+              {
+                 currentAdj = adjToVertex( nextAdjacency );
+
+                 if( !currentAdj.hasBeenVisited() )
+                 {
+                     currentAdj.setVisited();
+                     visitedString += currentAdj.getVertex();
+                     visitedString += SPACE;
+                     bfsQueue.enqueue( currentAdj );
+
+                     if( showQueue )
+                     {
+                        System.out.println( bfsQueue.toString() );
+                     }
+
+                 }
+                 nextAdjacency = currentVertex.getNextAdjacency();
+              }
+           }
+
+
+        }
+
+        for( startingIndex = 0; startingIndex < vertexListSize; startingIndex++ )
+        {
+          vertexList[ startingIndex ].unSetVisited();
+        }
+
+        return resultString + visitedString;
     }
 
     /**
@@ -277,6 +342,7 @@ public class GraphClass
     public void generateAdjacencyMatrix()
     {
         int index;
+        int outerIndex;
         int innerIndex;
         AdjacentNode currentAdjacency;
 
@@ -292,12 +358,12 @@ public class GraphClass
 
         System.out.println();
 
-        for( index = 0; index < vertexListSize; index++ )
+        for( outerIndex = 0; outerIndex < vertexListSize; outerIndex++ )
         {
-            System.out.print( vertexList[ index ].getVertex() );
+            System.out.print( vertexList[ outerIndex ].getVertex() );
             System.out.print( SPACE );
 
-            currentAdjacency = vertexList[ index ].getFirstAdjacency();
+            currentAdjacency = vertexList[ outerIndex ].getFirstAdjacency();
 
             for( innerIndex = 0; innerIndex < vertexListSize; innerIndex++ )
             {
@@ -305,7 +371,7 @@ public class GraphClass
                     currentAdjacency.getVertex() == vertexList[ innerIndex ].getVertex() )
                 {
                    System.out.print( currentAdjacency.getWeight() );
-                   currentAdjacency = vertexList[ index ].getNextAdjacency();
+                   currentAdjacency = vertexList[ outerIndex ].getNextAdjacency();
                 }
                 else
                 {
