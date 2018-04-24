@@ -247,8 +247,6 @@ public class GraphClass
           vertexList[ startingIndex ].unSetVisited();
         }
 
-        System.out.println();
-        
         return resultString + visitedString;
     }
 
@@ -339,8 +337,6 @@ public class GraphClass
             }
         }
 
-        System.out.println();
-
         return resultString + dfsString;
     }
 
@@ -390,6 +386,7 @@ public class GraphClass
             }
             System.out.println();
        }
+        System.out.println();
     }
 
     /**
