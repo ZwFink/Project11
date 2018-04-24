@@ -177,7 +177,6 @@ public class GraphClass
     {
         int startingIndex = vertexInList( startVertex );
 
-        String headerString = "Breadth-First Traversal";
         String resultString = "Breadth-First Result: ";
         String visitedString = "";
 
@@ -185,6 +184,11 @@ public class GraphClass
         VertexNode currentAdj;
         AdjacentNode nextAdjacency;
 
+
+        if( showQueue )
+        {
+            System.out.println( resultString );
+        }
 
         VertexQueue bfsQueue = new VertexQueue();
 
@@ -243,6 +247,8 @@ public class GraphClass
           vertexList[ startingIndex ].unSetVisited();
         }
 
+        System.out.println();
+        
         return resultString + visitedString;
     }
 
@@ -332,6 +338,8 @@ public class GraphClass
                 vertexList[ startingIndex ].unSetVisited();
             }
         }
+
+        System.out.println();
 
         return resultString + dfsString;
     }
