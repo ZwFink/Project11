@@ -252,7 +252,7 @@ public class GraphClass
 
     /**
      * Depth-First Search (DFS)
-     * is actually a treversal
+     * is actually a traversal
      * @param startVertex character vertex to start with
      * @param showStack boolean flag to control display of stack during operations
      * @return String result of traversal process
@@ -314,8 +314,6 @@ public class GraphClass
 
                         dfsString += currentAdj.getVertex();
                         dfsString += SPACE;
-
-
                     }
 
                     nextAdjacent = currentVertex.getNextAdjacency();
