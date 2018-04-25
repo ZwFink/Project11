@@ -176,6 +176,7 @@ public class GraphClass
     public String BFS( char startVertex, boolean showQueue )
     {
         int startingIndex = vertexInList( startVertex );
+        int counter = 1;
 
         String resultString = "Breadth-First Result: ";
         String visitedString = "";
@@ -223,9 +224,16 @@ public class GraphClass
 
                  if( !currentAdj.hasBeenVisited() )
                  {
+                     counter++;
+
                      currentAdj.setVisited();
                      visitedString += currentAdj.getVertex();
-                     visitedString += SPACE;
+
+                     if( counter < vertexListSize )
+                     {
+                         visitedString += SPACE;
+                     }
+
                      bfsQueue.enqueue( currentAdj );
 
                      if( showQueue )
@@ -263,6 +271,7 @@ public class GraphClass
         int startingIndex = vertexInList( startVertex );
         String dfsString = "";
         String resultString = "Depth-First Result: ";
+        int counter = 1;
 
         VertexStack depthStack = new VertexStack();
 
@@ -307,13 +316,19 @@ public class GraphClass
                         depthStack.push( currentAdj );
                         adjacencyNotFound = false;
 
+                        counter++;
+
                         if( showStack )
                         {
                             System.out.println( depthStack.toString() );
                         }
 
                         dfsString += currentAdj.getVertex();
-                        dfsString += SPACE;
+
+                        if( counter < vertexListSize )
+                        {
+                            dfsString += SPACE;
+                        }
                     }
 
                     nextAdjacent = currentVertex.getNextAdjacency();
